@@ -7,6 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Crystal Game</title>
     <style type="text/css">
+        body {
+            /* background-image: url(http://desktop-backgrounds-org.s3.amazonaws.com/1366x768/ice-crystal-nature.jpg); */
+            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhE-J9kWEFKdusrzhvvmSN0pc6FArm31vJNURIDcHicrwb9WJ4);
+        }
+
         .crystal-image {
             width: 300px;
             height: 300px;
@@ -30,16 +35,17 @@
 
         var targetNumber = Math.floor(Math.random() * 121) + 19;
 
-        // ****Add variables
         $("#number-to-guess").text(targetNumber);
 
+        // **** Variables for crystals
+        // Creating multiple crystals each with their own unique number value.
+
+        var Cr1 = Math.floor(Math.random() * 13) + 1;
+        var Cr2 = Math.floor(Math.random() * 13) + 1;
+        var Cr3 = Math.floor(Math.random() * 13) + 1;
+        var Cr4 = Math.floor(Math.random() * 13) + 1;
+
         var counter = 0;
-
-        // Now for the hard part. Creating multiple crystals each with their own unique number value.
-
-        // ****Change to 4 random numbers
-        // We begin by expanding our array to include four options.
-        var numberOptions = [10, 5, 3, 7];
 
         // Next we create a for loop to create crystals for every numberOption.
         for (var i = 0; i < numberOptions.length; i++) {
@@ -53,7 +59,7 @@
 
             // Each imageCrystal will be given a src link to the crystal image
             imageCrystal.attr("src", "https://www.crystalmagic.com/assets/images/Amethyst%20Druse%20SM_3.jpg");
-            
+
 
             // Each imageCrystal will be given a data attribute called data-crystalValue.
             // This data attribute will be set equal to the array value.
@@ -126,8 +132,23 @@
 
 
 // <!-- Each crystal should have a random hidden value between 1 - 12. -->
-
     </script>
-</body>
 
-</html>
+    <div class="row text-center">
+        <div class="col-sm-3">
+            <img src="https://static.boredpanda.com/blog/wp-content/uploads/2015/01/amazing-stones-minerals-13__700.jpg"
+                class="img-thumnail red" alt="Rose Quartz Geode" width="200" height="200" />
+        </div>
+        <div class="col-sm-3">
+            <img src="https://static.boredpanda.com/blog/wp-content/uploads/2015/04/IMG_54441__700.jpg"
+                class="img-thumbnail blue" alt="Blue Agate Geode" width="200" height="200" />
+        </div>
+        <div class="col-sm-3">
+            <img src="https://static.boredpanda.com/blog/wp-content/uploads/2015/04/Forsterite-Olivine-tmu14d__700.jpg"
+                class="img-thumnail yellow" alt="Olivine" width="200" height="200" />
+        </div>
+        <div class="col-sm-3">
+            <img src="https://static.boredpanda.com/blog/wp-content/uploads/2015/01/Amazing-StonesMinerals9__700.jpg"
+                class="img-thumnail green" alt="Fluorite" width="200" height="200" />
+        </div>
+    </div </body> </html>
