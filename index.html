@@ -6,149 +6,160 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Crystal Game</title>
-    <style type="text/css">
-        body {
-            /* background-image: url(http://desktop-backgrounds-org.s3.amazonaws.com/1366x768/ice-crystal-nature.jpg); */
-            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhE-J9kWEFKdusrzhvvmSN0pc6FArm31vJNURIDcHicrwb9WJ4);
-        }
 
-        .crystal-image {
-            width: 300px;
-            height: 300px;
-        }
-    </style>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+    <!-- Bootstrap File -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+
 </head>
 
 <body>
+    <div class="container">
+        <!-- First row - Name of Game -->
+        <div class="row">
+            <div class="col-sm-12" id="box">
+                <h1>Crystal Collector Game!</h1>
+            </div>
+        </div>
 
-    <h1>Number to Guess: <span id="number-to-guess"></span></h1>
+        <!-- Second row - Instructions-->
+        <div class="row">
+            <div class="col-sm-12" id="box">
+                <h3>Instructions</h3>
+                <p>Bla Bla</p>
+                <p>Bla Bla</p>
+                <p>Bla Bla</p>
+            </div>
+        </div>
+        <!-- Third row - Guesses & Wins-->
+        <div class="row">
+            <div class="col-sm-6" id="box">
+                <h3>Number to Match: <span id="number-to-guess"></span></h3>
+            </div>
 
-    <!-- Note that this div is now empty. We will fill it dynamically -->
-    <div id="crystals">
+            <div class="col-sm-6" id="box">
+                <h3>Wins: <span id="wins">0</span></h3>
+                <h3>Loss: <span id="losses">0</span></h3>
+            </div>
+        </div>
+
+
+        <!-- Fourth row - Crystals-->
+
+        <div class="row" id="images">
+            <div class="col-sm-3" id="box">
+                <button class="crBtn1 crystal-image">
+                    <img src="https://static.boredpanda.com/blog/wp-content/uploads/2015/01/amazing-stones-minerals-13__700.jpg"
+                        class="img-thumnail red" alt="Rose Quartz Geode" width="100" height="100" />
+                </button>
+            </div>
+            <div class="col-sm-3" id="box">
+                <button class="crBtn2 crystal-image">
+                    <img src="https://static.boredpanda.com/blog/wp-content/uploads/2015/04/Forsterite-Olivine-tmu14d__700.jpg"
+                    class="img-thumnail yellow" alt="Olivine" width="100" height="100" />
+                </button>
+            </div>
+            <div class="col-sm-3" id="box">
+                    <button class="crBtn3 crystal-image">
+                    <img src="https://static.boredpanda.com/blog/wp-content/uploads/2015/01/Amazing-StonesMinerals9__700.jpg"
+                    class="img-thumnail green" alt="Fluorite" width="100" height="100" />
+                </button>
+            </div>
+            <div class="col-sm-3" id="box">
+                <button class="crBtn4 crystal-image">
+                    <img src="https://static.boredpanda.com/blog/wp-content/uploads/2015/04/IMG_54441__700.jpg"
+                    class="img-thumbnail blue" alt="Blue Agate Geode" width="100" height="100" />
+                </button>
+            </div>
+        </div>
+
+
+        <!-- Fifth row - Score-->
+        <div class="row">
+            <div class="col-sm-12" id="box">
+                <h2>Crystal Score<span id="crystals">0</span></h2>
+            </div>
+        </div>
+
     </div>
 
-    <!-- JAVASCRIPT  -->
-    <!-- ========================================= -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <script type="text/javascript">
-
-        var targetNumber = Math.floor(Math.random() * 121) + 19;
-
-        $("#number-to-guess").text(targetNumber);
-
-        // **** Variables for crystals
-        // Creating multiple crystals each with their own unique number value.
-
-        var Cr1 = Math.floor(Math.random() * 13) + 1;
-        var Cr2 = Math.floor(Math.random() * 13) + 1;
-        var Cr3 = Math.floor(Math.random() * 13) + 1;
-        var Cr4 = Math.floor(Math.random() * 13) + 1;
-
-        var counter = 0;
-
-        // Next we create a for loop to create crystals for every numberOption.
-        for (var i = 0; i < numberOptions.length; i++) {
-
-            // For each iteration, we will create an imageCrystal
-            var imageCrystal = $("<img>");
-
-            // First each crystal will be given the class ".crystal-image".
-            // This will allow the CSS to take effect.
-            imageCrystal.addClass("crystal-image");
-
-            // Each imageCrystal will be given a src link to the crystal image
-            imageCrystal.attr("src", "https://www.crystalmagic.com/assets/images/Amethyst%20Druse%20SM_3.jpg");
+    
+    
 
 
-            // Each imageCrystal will be given a data attribute called data-crystalValue.
-            // This data attribute will be set equal to the array value.
-            imageCrystal.attr("data-crystalvalue", numberOptions[i]);
-
-            // Lastly, each crystal image (with all it classes and attributes) will get added to the page.
-            $("#crystals").append(imageCrystal);
-        }
-
-        // This time, our click event applies to every single crystal on the page. Not just one.
-        $(".crystal-image").on("click", function () {
-
-            // Determining the crystal's value requires us to extract the value from the data attribute.
-            // Using the $(this) keyword specifies that we should be extracting the crystal value of the clicked crystal.
-            // Using the .attr("data-crystalvalue") allows us to grab the value out of the "data-crystalvalue" attribute.
-            // Since attributes on HTML elements are strings, we must convert it to an integer before adding to the counter
-
-            var crystalValue = ($(this).attr("data-crystalvalue"));
-            crystalValue = parseInt(crystalValue);
-            // We then add the crystalValue to the user's "counter" which is a global variable.
-            // Every click, from every crystal adds to the global counter.
-            counter += crystalValue;
-
-            // All of the same game win-lose logic applies. So the rest remains unchanged.
-            alert("New score: " + counter);
-
-            if (counter === targetNumber) {
-                alert("You win!");
-            }
-
-            else if (counter >= targetNumber) {
-                alert("You lose!!");
-            }
-
-        });
 
 
-// <!-- There will be four crystals displayed as buttons on the page. -->
-    // <!-- Need to make buttons with pics  -->
-
-// <!-- The player will be shown a random number at the start of the game. -->
-    // <!-- Need box area to show random number generated -->
 
 
-// <!-- When the player clicks on a crystal, it will add a specific amount of points to the player's total score. -->
-    // <!-- JS- generate 4 random numbers that will be hidden from view.  Attribute these numbers to the crystals. -->
 
-// <!-- Your game will hide this amount until the player clicks a crystal. -->
-    // <!-- Make sure numbers attributed to crytals are hidden to the user. -->
-
-// <!-- When they do click one, update the player's score counter. -->
-    // <!-- Need Function to update the player's score counter as the crystals are pressed. -->
-
-// <!-- The player wins if their total score matches the random number from the beginning of the game. -->
-// <!-- The player loses if their score goes above the random number. -->
-    // <!-- If the player matches the displayed score then the player wins that game. -->
-    // <!-- If the player goes over the displayed score then the player loses that game. -->
-
-// <!-- The game restarts whenever the player wins or loses. -->
-    // <!-- Make reset Function -->
-
-// <!-- When the game begins again, the player should see a new random number. Also, all the crystals will have four new hidden values. Of course, the user's score (and score counter) will reset to zero. -->
-
-// <!-- The app should show the number of games the player wins and loses. To that end, do not refresh the page as a means to restart the game. -->
-
-// <!-- Option 1 Game design notes -->
+    <!-- There will be four crystals displayed as buttons on the page. -->
 
 
-// <!-- The random number shown at the start of the game should be between 19 - 120. -->
+    <!-- Need to make buttons with pics  -->
 
 
-// <!-- Each crystal should have a random hidden value between 1 - 12. -->
-    </script>
+    <!-- The player will be shown a random number at the start of the game. -->
 
-    <div class="row text-center">
-        <div class="col-sm-3">
-            <img src="https://static.boredpanda.com/blog/wp-content/uploads/2015/01/amazing-stones-minerals-13__700.jpg"
-                class="img-thumnail red" alt="Rose Quartz Geode" width="200" height="200" />
-        </div>
-        <div class="col-sm-3">
-            <img src="https://static.boredpanda.com/blog/wp-content/uploads/2015/04/IMG_54441__700.jpg"
-                class="img-thumbnail blue" alt="Blue Agate Geode" width="200" height="200" />
-        </div>
-        <div class="col-sm-3">
-            <img src="https://static.boredpanda.com/blog/wp-content/uploads/2015/04/Forsterite-Olivine-tmu14d__700.jpg"
-                class="img-thumnail yellow" alt="Olivine" width="200" height="200" />
-        </div>
-        <div class="col-sm-3">
-            <img src="https://static.boredpanda.com/blog/wp-content/uploads/2015/01/Amazing-StonesMinerals9__700.jpg"
-                class="img-thumnail green" alt="Fluorite" width="200" height="200" />
-        </div>
-    </div </body> </html>
+    <!-- Need box area to show random number generated -->
+
+
+
+    <!-- When the player clicks on a crystal, it will add a specific amount of points to the player's total score. -->
+
+    <!-- JS- generate 4 random numbers that will be hidden from view.  Attribute these numbers to the crystals. -->
+
+
+    <!-- Your game will hide this amount until the player clicks a crystal. -->
+
+    <!-- Make sure numbers attributed to crytals are hidden to the user. -->
+
+
+    <!-- When they do click one, update the player's score counter. -->
+
+    <!-- Need Function to update the player's score counter as the crystals are pressed. -->
+
+
+    <!-- The player wins if their total score matches the random number from the beginning of the game. -->
+
+    <!-- The player loses if their score goes above the random number. -->
+
+    <!-- If the player matches the displayed score then the player wins that game. -->
+
+    <!-- If the player goes over the displayed score then the player loses that game. -->
+
+
+    <!-- The game restarts whenever the player wins or loses. -->
+
+    <!-- Make reset Function -->
+
+
+    <!-- When the game begins again, the player should see a new random number. Also, all the crystals will have four new hidden values. Of course, the user's score (and score counter) will reset to zero. -->
+
+
+    <!-- The app should show the number of games the player wins and loses. To that end, do not refresh the page as a means to restart the game. -->
+
+
+    <!-- Option 1 Game design notes -->
+
+
+
+    <!-- The random number shown at the start of the game should be between 19 - 120. -->
+
+
+
+    <!-- Each crystal should have a random hidden value between 1 - 12. -->
+
+    <!-- Scripts -->
+    <script src="./assets/javascript/game.js"></script>
+
+
+</body>
+
+</html>
