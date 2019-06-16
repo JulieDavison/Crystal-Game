@@ -1,11 +1,10 @@
 body {
-    /* background-image: url(https://png.pngtree.com/thumb_back/fh260/back_pic/00/14/65/3256657136926fa.jpg); */
     background-image: url(https://i.pinimg.com/originals/ba/e5/30/bae53044149e58168a5006a245a4b195.jpg);
 
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
     background-size: auto;
     background-size: 100%;
-    
+    /* max-width: 100%; */
     
 }
 
@@ -32,9 +31,21 @@ body {
     
      
 }
-/* img { */
-    /* border-color: lightblue; */
-/* } */
+.crystal-image {
+    border-color: lightblue;
+    border-width: 20px;
+    padding: 0;
+}
 
-
+#footer-container {
+    background: steelblue;
+    color: #ffffff;
+    border-top: 8px solid slateblue;
+    padding: 20px 0;
+    font-size: 12px;
+    text-align: center;
+}
+button {
+    position: relative;
+}
 
